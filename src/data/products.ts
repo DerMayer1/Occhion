@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Product, Category } from '../types';
 
 export const categories: Category[] = [
@@ -84,3 +85,101 @@ export const products: Product[] = [
     features: ['Acetato Cristal', 'Lentes Degradê', 'Proteção Total'],
   },
 ];
+=======
+import type { CatalogCategory } from '../types/catalog';
+import { degreeProducts } from './products-degree';
+import { solarProducts } from './products-solar';
+
+export const CATALOG: CatalogCategory[] = [
+  {
+    id: 'grau',
+    label: 'Óculos de Grau',
+    description:
+      'Armações organizadas por material, com leitura comercial e preparação para a etapa de lentes e prescrição.',
+    subcategories: [
+      {
+        id: 'acetato',
+        label: 'Acetato',
+        description: 'Modelos com presença visual mais marcante e repertório forte de cor e acabamento.',
+      },
+      {
+        id: 'metal',
+        label: 'Metal',
+        description: 'Linhas leves e discretas para uma apresentação mais refinada.',
+      },
+      {
+        id: 'tr90',
+        label: 'TR90',
+        description: 'Peças leves e flexíveis para rotina de uso contínuo.',
+      },
+      {
+        id: 'infantil',
+        label: 'Infantil',
+        description: 'Produtos para conforto, adaptação e rotina de uso das crianças.',
+      },
+    ],
+  },
+  {
+    id: 'solar',
+    label: 'Óculos Solar',
+    description:
+      'Coleções organizadas por assinatura, recurso e estilo para apresentar melhor o mix OCCHI\'ON e Bell\'occhio.',
+    subcategories: [
+      {
+        id: 'solar',
+        label: 'Solar',
+        description: 'Modelos principais da coleção OCCHI\'ON com leitura comercial direta.',
+      },
+      {
+        id: 'bellocchio',
+        label: "Bell'occhio",
+        description: 'Linha com assinatura própria e papel de destaque visual na coleção.',
+      },
+      {
+        id: 'clip-on',
+        label: 'Clip-On',
+        description: 'Coleção transversal por funcionalidade, útil para organizar o catálogo com clareza.',
+      },
+    ],
+  },
+];
+
+export const PRODUCTS = [...degreeProducts, ...solarProducts];
+
+export const FEATURED_PRODUCT_IDS = [
+  'occhion-bellocchio-laguna-bellocchio',
+  'occhion-bellocchio-noir-bellocchio',
+  'occhion-bellocchio-milano-tr90',
+  'occhion-firenze-classic-havana-acetato',
+  'occhion-capri-matte-black-tr90',
+  'occhion-firenze-clip-urban-black-clip-on',
+];
+
+export const FEATURED_PRODUCTS = PRODUCTS.filter((product) => FEATURED_PRODUCT_IDS.includes(product.id));
+
+export function getProductById(productId: string) {
+  return PRODUCTS.find((product) => product.id === productId);
+}
+
+export function getProductsByCategory(categoryId?: string) {
+  if (!categoryId || (categoryId !== 'grau' && categoryId !== 'solar')) {
+    return PRODUCTS;
+  }
+
+  return PRODUCTS.filter((product) => product.category === categoryId);
+}
+
+export function getRelatedProducts(productId: string) {
+  const product = getProductById(productId);
+
+  if (!product) {
+    return FEATURED_PRODUCTS.slice(0, 3);
+  }
+
+  return PRODUCTS.filter(
+    (candidate) =>
+      candidate.id !== product.id &&
+      (candidate.subcategory === product.subcategory || candidate.line === product.line),
+  ).slice(0, 3);
+}
+>>>>>>> edacafd (feat: initial Occhion site (clean structure + catalog))

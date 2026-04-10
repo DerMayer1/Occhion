@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
+<<<<<<< HEAD
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
     "module": "ESNext",
@@ -9,10 +10,15 @@
       "DOM",
       "DOM.Iterable"
     ],
+=======
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+>>>>>>> edacafd (feat: initial Occhion site (clean structure + catalog))
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",
+<<<<<<< HEAD
     "allowJs": true,
     "jsx": "react-jsx",
     "paths": {
@@ -23,4 +29,15 @@
     "allowImportingTsExtensions": true,
     "noEmit": true
   }
+=======
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "include": ["src", "vite.config.ts"]
+>>>>>>> edacafd (feat: initial Occhion site (clean structure + catalog))
 }
